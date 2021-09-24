@@ -5,15 +5,15 @@
     "description": "vue-crx-template description.",
     "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
     "icons": {
-        "16": "./favicon.ico",
-        "48": "./favicon.ico",
-        "128": "./favicon.ico"
+        "16": "./favicon.png",
+        "48": "./favicon.png",
+        "128": "./favicon.png"
     },
     "browser_action": {
         "default_title": "test",
         "default_popup": "./popup.html",
         "default_icon": {
-            "48": "./favicon.ico"
+            "48": "./favicon.png"
         }
     },
     "content_scripts": [{
