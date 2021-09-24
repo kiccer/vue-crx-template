@@ -1,0 +1,39 @@
+{
+    "manifest_version": 2,
+    "version": "1.0",
+    "name": "vue-crx-template",
+    "description": "vue-crx-template description.",
+    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+    "icons": {
+        "16": "./favicon.ico",
+        "48": "./favicon.ico",
+        "128": "./favicon.ico"
+    },
+    "browser_action": {
+        "default_title": "test",
+        "default_popup": "./popup.html",
+        "default_icon": {
+            "48": "./favicon.ico"
+        }
+    },
+    "content_scripts": [{
+        "matches": ["<all_urls>"],
+        "js": [
+            "./js/chunk-common.js",
+            "./js/chunk-vendors.js",
+            "./js/content.js"
+        ]
+    }],
+    "options_page": "options.html",
+    "permissions": [
+        "*://*/*"
+    ],
+    "background": {
+        "scripts": [
+            "./js/chunk-common.js",
+            "./js/chunk-vendors.js",
+            "./js/background.js"
+        ],
+        "popup": "background.html"
+    }
+}

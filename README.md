@@ -1,4 +1,4 @@
-# xc-crx-template
+# vue-crx-template
 
 ## Project setup
 ```
