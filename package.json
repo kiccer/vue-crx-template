@@ -4,9 +4,8 @@
     "private": true,
     "author": "kiccer<1072907338@qq.com>",
     "scripts": {
-        "dev": "vue-cli-service build --watch",
         "serve": "vue-cli-service serve",
-        "build": "vue-cli-service build",
+        "build-watch": "vue-cli-service build --watch --mode=production",
         "lint": "vue-cli-service lint",
         "lint-fix": "eslint --fix --ext .js --ext .vue src"
     },

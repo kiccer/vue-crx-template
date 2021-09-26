@@ -1,17 +1,17 @@
 <template>
-    <div class="KICCER_CRX_VUE_APP_ROOT">
-        This is a Vue component.12345
+    <div class="kiccer_crx_vue_app_root">
+        This is a Vue component.
     </div>
 </template>
 
 <script>
 export default {
-    name: 'KICCER_CRX_VUE_APP_ROOT'
+    name: 'kiccer_crx_vue_app_root'
 }
 </script>
 
 <style lang="scss" scoped>
-// .KICCER_CRX_VUE_APP_ROOT {
+// .kiccer_crx_vue_app_root {
 
 // }
 </style>

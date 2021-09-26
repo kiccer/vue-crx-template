@@ -1,6 +1,10 @@
 module.exports = {
     outputDir: 'extensions',
+    filenameHashing: false,
+    productionSourceMap: false,
     pages: {
+        index: 'src/main.js',
+
         background: {
             // page 的入口
             entry: 'src/background.js',
@@ -15,6 +19,7 @@ module.exports = {
             // 提取出来的通用 chunk 和 vendor chunk。
             // chunks: ['chunk-vendors', 'chunk-common', 'index']
         },
+
         options: {
             // page 的入口
             entry: 'src/options.js',
@@ -29,6 +34,7 @@ module.exports = {
             // 提取出来的通用 chunk 和 vendor chunk。
             // chunks: ['chunk-vendors', 'chunk-common', 'index']
         },
+
         content: {
             // page 的入口
             entry: 'src/content.js',
@@ -43,6 +49,7 @@ module.exports = {
             // 提取出来的通用 chunk 和 vendor chunk。
             // chunks: ['chunk-vendors', 'chunk-common', 'index']
         },
+
         popup: {
             // page 的入口
             entry: 'src/popup.js',
