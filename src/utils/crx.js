@@ -294,11 +294,9 @@ export class Port {
 
     // 发送消息
     send (command = '', payload) {
-        if (!command) throw new Error('指令不能为空')
-
-        const token = hash()
-
         return new Promise((resolve, reject) => {
+            if (!command) return reject(new Error('指令不能为空'))
+            const token = hash()
             this.promises.set(token, { resolve, reject })
             this.port.postMessage({ command, payload, token })
         })
