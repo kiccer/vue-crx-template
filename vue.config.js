@@ -1,3 +1,6 @@
+const path = require('path')
+const resolve = dir => path.join(__dirname, dir)
+
 module.exports = {
     outputDir: 'extensions',
     filenameHashing: false,
@@ -64,5 +67,21 @@ module.exports = {
             // 提取出来的通用 chunk 和 vendor chunk。
             // chunks: ['chunk-vendors', 'chunk-common', 'index']
         }
+    },
+
+    chainWebpack: config => {
+        // 添加别名
+        config.resolve.alias
+            // .set('vue$', 'vue/dist/vue.esm.js')
+            .set('@', resolve('src'))
+            .set('@assets', resolve('src/assets'))
+            // .set('@scss', resolve('src/assets/scss'))
+            .set('@components', resolve('src/components'))
+            .set('@views', resolve('src/views'))
+            .set('@router', resolve('src/router'))
+            .set('@store', resolve('src/store'))
+            // .set('@plugins', resolve('src/plugins'))
+            // .set('@layouts', resolve('src/layouts'))
+            // .set('@static', resolve('src/static'))
     }
 }
