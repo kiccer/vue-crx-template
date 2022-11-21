@@ -154,6 +154,13 @@ export const windowTabs = windowId => {
     })
 }
 
+// 通知
+export const notify = (payload = {}) => {
+    return tryPromise((resolve, reject) => {
+        chrome.notifications.create(payload, res => resolve(res))
+    })
+}
+
 // sleep
 export const sleep = (time = 0) => {
     return new Promise(resolve => setTimeout(resolve, time))
