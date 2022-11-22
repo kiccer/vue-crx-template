@@ -186,8 +186,14 @@ export class Connect {
         // 所有连接
         this.ports = []
 
+        // 中间件
+        this.middleWares = new Map()
+
         // 处理器
         this.handlers = new Map()
+
+        // debug
+        this.debug = msg => {}
 
         // 连接事件
         chrome.runtime.onConnect.addListener(port => {
@@ -225,10 +231,37 @@ export class Connect {
         })
     }
 
+    // debugger
+    debugger (fn = msg => {}) {
+        this.debug = fn
+    }
+
+    // 注册中间件
+    use (name, middleware) {
+        this.middleWares.set(name, middleware)
+    }
+
     // 注册处理器
     on (command = '', handler = (payload, callback, msg, port) => {}) {
         if (!command) throw new Error('指令不能为空')
-        this.handlers.set(command, handler)
+
+        // this.handlers.set(command, handler)
+        this.handlers.set(command, async (payload, callback, msg, port) => {
+            for (const [name, middleware] of this.middleWares) {
+                const ret = await middleware(command, payload, msg, port)
+
+                if (ret instanceof Error) {
+                    this.debug(`中间件 ${name} 执行失败：${ret.message}`)
+                    return callback(ret) // 如果中间件返回错误，则中断执行，返回错误
+                }
+            }
+
+            // 执行处理器
+            handler(payload, ret => {
+                if (ret instanceof Error) this.debug(`指令 ${command} 执行失败：${ret.message}`)
+                callback(ret)
+            }, msg, port)
+        })
     }
 
     // 主动触发处理器
