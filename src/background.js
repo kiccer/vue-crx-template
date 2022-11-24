@@ -1,3 +1,4 @@
+import 'crx-hotreload'
 import { Connect } from '@/utils/crx'
 
 const conn = new Connect()
