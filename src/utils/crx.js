@@ -74,6 +74,12 @@ export const localStorage = {
         return tryPromise((resolve, reject) => {
             chrome.storage.local.set({ [key]: val }, res => resolve(res))
         })
+    },
+
+    remove: key => {
+        return tryPromise((resolve, reject) => {
+            chrome.storage.local.remove(key, res => resolve(res))
+        })
     }
 }
 
@@ -182,7 +188,10 @@ const hash = (len = 16) => {
 // background 连接，只需要在 background.js 中调用一次
 // popup.js 中通过 chrome.extension.getBackgroundPage() 获取
 export class Connect {
-    constructor () {
+    constructor (name) {
+        // 连接名称
+        this.name = name
+
         // 所有连接
         this.ports = []
 
@@ -197,37 +206,39 @@ export class Connect {
 
         // 连接事件
         chrome.runtime.onConnect.addListener(port => {
-            // 保存连接
-            this.ports.push(port)
+            if (port.name === this.name) {
+                // 保存连接
+                this.ports.push(port)
 
-            // 监听消息
-            port.onMessage.addListener(msg => {
-                // 获取处理指令的处理器
-                const handler = this.handlers.get(msg.command)
-                if (!handler) throw new Error(`未找到指令 ${msg.command} 的处理器`)
+                // 监听消息
+                port.onMessage.addListener(msg => {
+                    // 获取处理指令的处理器
+                    const handler = this.handlers.get(msg.command)
+                    if (!handler) throw new Error(`未找到指令 ${msg.command} 的处理器`)
 
-                // 处理消息 (前两个是常用参数，后面两个完整参数放着备用)
-                handler(msg.payload, res => {
-                    const isError = res instanceof Error
+                    // 处理消息 (前两个是常用参数，后面两个完整参数放着备用)
+                    handler(msg.payload, res => {
+                        const isError = res instanceof Error
 
-                    port.postMessage({
-                        token: msg.token,
-                        payload: isError ? {
-                            status: false,
-                            message: res.message
-                        } : {
-                            status: true,
-                            data: res
-                        }
-                    })
-                }, msg, port)
-            })
+                        port.postMessage({
+                            token: msg.token,
+                            payload: isError ? {
+                                status: false,
+                                message: res.message
+                            } : {
+                                status: true,
+                                data: res
+                            }
+                        })
+                    }, msg, port)
+                })
 
-            // 监听断开连接
-            port.onDisconnect.addListener(() => {
-                // 移除连接
-                this.ports = this.ports.filter(p => p !== port)
-            })
+                // 监听断开连接
+                port.onDisconnect.addListener(() => {
+                    // 移除连接
+                    this.ports = this.ports.filter(p => p !== port)
+                })
+            }
         })
     }
 
@@ -290,7 +301,10 @@ export class Connect {
 
 // content 连接，content.js 和 options.js 通过此类与 background.js 连接
 export class Port {
-    constructor () {
+    constructor (name) {
+        // 连接名称
+        this.name = name
+
         // 异步响应
         this.promises = new Map()
 
@@ -299,7 +313,7 @@ export class Port {
 
         // 连接事件
         this.port = chrome.runtime.connect({
-            name: 'content'
+            name: this.name
         })
 
         // 监听消息
