@@ -10,6 +10,7 @@
         "lint-fix": "eslint --fix --ext .js --ext .vue src"
     },
     "dependencies": {
+        "@crx-api/messaging": "^1.0.0",
         "core-js": "^3.6.5",
         "vue": "^2.6.11",
         "vue-router": "^3.2.0",
@@ -23,7 +24,6 @@
         "@vue/cli-service": "~4.5.0",
         "@vue/eslint-config-standard": "^5.1.2",
         "babel-eslint": "^10.1.0",
-        "crx-hotreload": "^1.0.6",
         "eslint": "^6.7.2",
         "eslint-plugin-import": "^2.20.2",
         "eslint-plugin-node": "^11.1.0",

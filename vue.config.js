@@ -6,7 +6,7 @@ module.exports = {
     filenameHashing: false,
     productionSourceMap: false,
     pages: {
-        index: 'src/main.js',
+        // index: 'src/main.js',
 
         background: {
             // page 的入口
@@ -83,5 +83,8 @@ module.exports = {
             // .set('@plugins', resolve('src/plugins'))
             // .set('@layouts', resolve('src/layouts'))
             // .set('@static', resolve('src/static'))
+
+        // 取消代码分割
+        config.optimization.delete('splitChunks')
     }
 }

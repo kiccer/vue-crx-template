@@ -1,7 +1,7 @@
-import 'crx-hotreload'
-import { Connect } from '@/utils/crx'
+import { Connect } from '@crx-api/messaging'
 
-const conn = new Connect()
+const conn = new Connect('my-extensions')
+// window.conn = conn // 将变量暴露到全局，用于 popup.js 中调用
 
 // debugger
 conn.debugger(msg => {
@@ -32,6 +32,3 @@ conn.on('test', (payload, callback) => {
 })
 
 // 添加更多的处理器...
-
-// 将变量暴露到全局，用于 popup.js 中调用
-window.conn = conn

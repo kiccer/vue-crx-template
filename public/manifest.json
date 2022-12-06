@@ -1,40 +1,41 @@
 {
-    "manifest_version": 2,
+    "manifest_version": 3,
     "version": "1.0",
     "name": "vue-crx-template",
     "description": "vue-crx-template description.",
-    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+    "author": "kiccer<1072907338@qq.com>",
+    
+    "action": {
+        "default_icon": {
+            "16": "./favicon.png",
+            "48": "./favicon.png",
+            "128": "./favicon.png"
+        },
+        "default_title": "test",
+        "default_popup": "./popup.html"
+    },
+
     "icons": {
         "16": "./favicon.png",
         "48": "./favicon.png",
         "128": "./favicon.png"
     },
-    "browser_action": {
-        "default_title": "test",
-        "default_popup": "./popup.html",
-        "default_icon": {
-            "48": "./favicon.png"
-        }
+
+    "background": {
+        "service_worker": "./js/background.js"
     },
+    
     "content_scripts": [{
         "matches": ["<all_urls>"],
         "css": [
             "./css/content.css"
         ],
         "js": [
-            "./js/chunk-vendors.js",
             "./js/content.js"
         ]
     }],
+
     "options_page": "options.html",
-    "permissions": [
-        "*://*/*"
-    ],
-    "background": {
-        "scripts": [
-            "./js/chunk-vendors.js",
-            "./js/background.js"
-        ],
-        "popup": "background.html"
-    }
+
+    "permissions": []
 }

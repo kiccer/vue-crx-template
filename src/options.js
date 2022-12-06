@@ -3,10 +3,10 @@ import Vue from 'vue'
 import Options from './Options.vue'
 import router from './router/options.js'
 import store from './store'
-import { Port } from '@/utils/crx.js'
+import { Port } from '@crx-api/messaging'
 
 Vue.config.productionTip = false
-Vue.prototype.$port = new Port()
+Vue.prototype.$port = new Port('my-extensions')
 
 new Vue({
     router,

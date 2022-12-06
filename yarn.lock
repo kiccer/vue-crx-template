@@ -903,6 +903,11 @@
     "@babel/helper-validator-identifier" "^7.14.9"
     to-fast-properties "^2.0.0"
 
+"@crx-api/messaging@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@crx-api/messaging/-/messaging-1.0.0.tgz#54002f2e607b3a9461397d5b555006b6ead5b27f"
+  integrity sha512-h0+wqYlxwKNoffV/6+2LFEsL1hmuI3vjtIgplRor/L37m4BHFYghlO6zAzcXGjINKeTqPzxapMc5Hzbs03tdmQ==
+
 "@hapi/address@2.x.x":
   version "2.1.4"
   resolved "https://registry.nlark.com/@hapi/address/download/@hapi/address-2.1.4.tgz#5d67ed43f3fd41a69d4b9ff7b56e7c0d1d0a81e5"
@@ -2839,11 +2844,6 @@ cross-spawn@^7.0.0:
     path-key "^3.1.0"
     shebang-command "^2.0.0"
     which "^2.0.1"
-
-crx-hotreload@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/crx-hotreload/-/crx-hotreload-1.0.6.tgz#6caebf8307bc4efec0b661d7cf4f03a27fdfebc2"
-  integrity sha512-W07F3gXyCTrHf4w1W2v6y3PHBYyYtJKCiBmgf0FkkteFh9GhqeV9HR7+UbKKfnrx39oC+PHycz9NmBMerIcbGA==
 
 crypto-browserify@^3.11.0:
   version "3.12.0"
