@@ -9,8 +9,7 @@ export default {
     name: 'kiccer-crx-vue-app-root-popup',
 
     mounted () {
-    // 使用 background.js 中的方法，使用 emit 主动触发 Connect 中注册的事件
-        this.$background.conn.emit('test', {
+        this.$port.send('test', {
             isError: false
         })
     }

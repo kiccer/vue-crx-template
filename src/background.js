@@ -1,7 +1,6 @@
 import { Connect } from '@crx-api/messaging'
 
 const conn = new Connect('my-extensions')
-// window.conn = conn // 将变量暴露到全局，用于 popup.js 中调用
 
 // debugger
 conn.debugger(msg => {

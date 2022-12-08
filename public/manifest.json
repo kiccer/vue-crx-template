@@ -11,7 +11,7 @@
             "48": "./favicon.png",
             "128": "./favicon.png"
         },
-        "default_title": "test",
+        "default_title": "vue-crx-template",
         "default_popup": "./popup.html"
     },
 

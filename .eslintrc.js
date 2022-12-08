@@ -6,7 +6,8 @@ module.exports = {
     },
 
     globals: {
-        chrome: true
+        globalThis: true,
+        chrome: 'readonly'
     },
 
     extends: [
